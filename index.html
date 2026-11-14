@@ -1,0 +1,986 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>RecallTag — Safety follows the item</title>
+    <style>
+      :root {
+        --navy: #122831;
+        --ink: #1b3038;
+        --muted: #73828a;
+        --line: #dfe5e6;
+        --bg: #f4f7f7;
+        --teal: #137566;
+        --amber: #d28b24;
+        --red: #bb4d39;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--ink);
+        font:
+          14px system-ui,
+          -apple-system,
+          sans-serif;
+      }
+      button,
+      input,
+      select,
+      textarea {
+        font: inherit;
+      }
+      button,
+      a {
+        cursor: pointer;
+      }
+      button {
+        transition: 0.15s;
+      }
+      button:disabled {
+        opacity: 0.4;
+        cursor: not-allowed;
+      }
+      button:focus-visible,
+      a:focus-visible {
+        outline: 3px solid #72bcae;
+        outline-offset: 3px;
+      }
+      button:hover:not(:disabled) {
+        filter: brightness(0.95);
+      }
+      .app {
+        display: grid;
+        grid-template-columns: 228px 1fr;
+        min-height: 100vh;
+      }
+      .rt-sidebar {
+        background: var(--navy);
+        color: #b4c4cb;
+        padding: 29px 20px;
+        position: sticky;
+        top: 0;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+      }
+      .brand {
+        color: #fff;
+        font-size: 23px;
+        font-weight: 750;
+        letter-spacing: -1px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+      .mark {
+        width: 33px;
+        height: 37px;
+        background: #e5f5a0;
+        clip-path: polygon(0 0, 100% 0, 100% 65%, 50% 100%, 0 65%);
+        color: var(--navy);
+        display: grid;
+        place-items: center;
+        font-size: 22px;
+      }
+      .brand small {
+        color: #d9f087;
+      }
+      .side-label {
+        font-size: 9px;
+        letter-spacing: 2px;
+        margin: 44px 13px 12px;
+        color: #73909b;
+        font-weight: 700;
+      }
+      .navbtn {
+        width: 100%;
+        border: 0;
+        background: none;
+        color: #acbec6;
+        text-align: left;
+        padding: 13px;
+        border-radius: 7px;
+        margin-bottom: 6px;
+        display: flex;
+        gap: 12px;
+        align-items: center;
+      }
+      .navbtn.active {
+        background: #28414b;
+        color: #fff;
+      }
+      .navnum {
+        margin-left: auto;
+        font-size: 10px;
+        background: #3a4f55;
+        border-radius: 4px;
+        padding: 2px 6px;
+      }
+      .sidebottom {
+        margin-top: auto;
+        padding: 16px 12px;
+        border-top: 1px solid #31464e;
+        font-size: 11px;
+        line-height: 1.8;
+      }
+      .live-dot {
+        display: inline-block;
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: #c8e88a;
+        margin-right: 6px;
+      }
+      main {
+        min-width: 0;
+      }
+      header {
+        height: 78px;
+        background: #fff;
+        border-bottom: 1px solid var(--line);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 38px;
+        gap: 14px;
+      }
+      .breadcrumb {
+        color: var(--muted);
+        font-size: 12px;
+      }
+      .breadcrumb strong {
+        color: var(--ink);
+        font-weight: 500;
+      }
+      .session {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+      .session label {
+        font-size: 10px;
+        color: var(--muted);
+      }
+      select,
+      input,
+      textarea {
+        border: 1px solid var(--line);
+        border-radius: 7px;
+        background: #fff;
+        padding: 10px 12px;
+        color: var(--ink);
+      }
+      select {
+        max-width: 100%;
+      }
+      textarea {
+        width: 100%;
+        resize: vertical;
+        min-height: 85px;
+      }
+      input:focus,
+      textarea:focus,
+      select:focus {
+        outline: 2px solid #9bcabd;
+      }
+      .session select {
+        font-size: 12px;
+        background: #f9fbfb;
+      }
+      .page {
+        padding: 33px 38px;
+        max-width: 1520px;
+        margin: auto;
+      }
+      .heading {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 16px;
+        margin-bottom: 25px;
+      }
+      .eyebrow {
+        font-size: 10px;
+        letter-spacing: 1.7px;
+        color: var(--teal);
+        font-weight: 750;
+        text-transform: uppercase;
+      }
+      h1 {
+        font-size: 31px;
+        letter-spacing: -1.1px;
+        margin: 8px 0 9px;
+        font-weight: 650;
+      }
+      h2 {
+        font-size: 16px;
+        letter-spacing: -0.3px;
+        margin: 0;
+      }
+      h3 {
+        font-size: 13px;
+        margin: 0;
+      }
+      .muted {
+        color: var(--muted);
+        line-height: 1.7;
+      }
+      .small {
+        font-size: 11px;
+      }
+      .btn {
+        border: 1px solid var(--line);
+        background: white;
+        border-radius: 7px;
+        padding: 10px 14px;
+        font-size: 12px;
+        font-weight: 600;
+        color: var(--ink);
+      }
+      .primary {
+        background: var(--teal);
+        border-color: var(--teal);
+        color: #fff;
+      }
+      .dark {
+        background: var(--navy);
+        color: #fff;
+        border-color: var(--navy);
+      }
+      .danger {
+        background: #fff4ed;
+        border-color: #e6c6b0;
+        color: #9c512a;
+      }
+      .notice {
+        display: flex;
+        align-items: flex-start;
+        gap: 11px;
+        border: 1px solid #d7e4dc;
+        background: #edf5ee;
+        border-radius: 8px;
+        padding: 13px 16px;
+        line-height: 1.6;
+        font-size: 12px;
+        margin-bottom: 24px;
+      }
+      .notice strong {
+        color: #315d48;
+      }
+      .notice .badge {
+        margin-left: auto;
+        white-space: nowrap;
+      }
+      .stats {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 17px;
+        margin-bottom: 26px;
+      }
+      .stat,
+      .card {
+        background: #fff;
+        border: 1px solid var(--line);
+        border-radius: 10px;
+      }
+      .stat {
+        padding: 19px 21px;
+      }
+      .stat label {
+        font-size: 11px;
+        color: var(--muted);
+      }
+      .stat-num {
+        font-size: 31px;
+        letter-spacing: -1px;
+        margin: 8px 0;
+      }
+      .stat-note {
+        font-size: 10px;
+        color: var(--muted);
+      }
+      .stat-icon {
+        float: right;
+        font-size: 17px;
+        color: #77928d;
+      }
+      .rt-content {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) 294px;
+        gap: 22px;
+      }
+      .card-head {
+        padding: 20px 22px;
+        border-bottom: 1px solid var(--line);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 10px;
+      }
+      .toolbar {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 15px 20px;
+        border-bottom: 1px solid var(--line);
+      }
+      .toolbar input {
+        flex: 1;
+        min-width: 70px;
+        background: #fafcfc;
+        font-size: 12px;
+      }
+      .toolbar select {
+        font-size: 11px;
+      }
+      .table-wrap {
+        overflow: auto;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        text-align: left;
+        white-space: nowrap;
+      }
+      th {
+        font-size: 9px;
+        letter-spacing: 1px;
+        color: #87949a;
+        font-weight: 650;
+        background: #fcfdfd;
+        padding: 13px 20px;
+      }
+      td {
+        padding: 19px 20px;
+        border-top: 1px solid #edf0f1;
+        font-size: 12px;
+      }
+      .item-name {
+        font-weight: 700;
+        display: flex;
+        gap: 10px;
+        align-items: center;
+      }
+      .battery {
+        width: 29px;
+        height: 35px;
+        border: 1px solid #d7e0df;
+        border-radius: 5px;
+        background: #eef3f1;
+        display: grid;
+        place-items: center;
+        color: #547b6a;
+      }
+      .item-sub {
+        font-size: 10px;
+        color: var(--muted);
+        font-weight: 400;
+        margin-top: 3px;
+      }
+      .badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+        font-size: 10px;
+        padding: 5px 8px;
+        border-radius: 5px;
+        background: #edf2f3;
+        color: #61727a;
+        font-weight: 550;
+      }
+      .badge.amber {
+        color: #a35d19;
+        background: #fff1df;
+      }
+      .badge.green {
+        color: #277661;
+        background: #eaf5ef;
+      }
+      .badge.red {
+        color: #ad4b3a;
+        background: #fff0eb;
+      }
+      .text-btn {
+        background: none;
+        border: 0;
+        color: var(--teal);
+        font-size: 12px;
+        padding: 7px;
+        font-weight: 650;
+      }
+      .table-foot {
+        padding: 14px 20px;
+        border-top: 1px solid var(--line);
+        font-size: 10px;
+        color: var(--muted);
+        display: flex;
+        justify-content: space-between;
+      }
+      .rail-card {
+        padding: 21px;
+        margin-bottom: 18px;
+      }
+      .scenario {
+        background: var(--navy);
+        color: #fff;
+        border-radius: 10px;
+        padding: 23px;
+        margin-bottom: 18px;
+        position: relative;
+        overflow: hidden;
+      }
+      .scenario .eyebrow {
+        color: #d9ed9c;
+      }
+      .scenario h2 {
+        font-size: 21px;
+        line-height: 1.3;
+        margin: 12px 0;
+      }
+      .scenario p {
+        color: #b2c5cc;
+        font-size: 12px;
+        line-height: 1.8;
+      }
+      .scenario .btn {
+        background: #dff09f;
+        color: #24392e;
+        border: 0;
+        width: 100%;
+        margin-top: 10px;
+      }
+      .scenario:after {
+        content: "↗";
+        position: absolute;
+        right: 10px;
+        top: 12px;
+        font-size: 70px;
+        color: #ffffff0a;
+        pointer-events: none;
+      }
+      .step {
+        display: flex;
+        gap: 11px;
+        margin-top: 18px;
+        font-size: 11px;
+        line-height: 1.6;
+      }
+      .stepnum {
+        width: 22px;
+        height: 22px;
+        flex-shrink: 0;
+        border: 1px solid var(--line);
+        border-radius: 50%;
+        display: grid;
+        place-items: center;
+        color: var(--teal);
+      }
+      .legend {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin-top: 14px;
+        font-size: 11px;
+        color: var(--muted);
+      }
+      .dot {
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+        background: #b4c1c4;
+      }
+      .dot.orange {
+        background: #dc9b48;
+      }
+      .dot.green {
+        background: #4d9c80;
+      }
+      .bottom-banner {
+        border-top: 1px solid var(--line);
+        margin-top: 26px;
+        padding-top: 19px;
+        display: flex;
+        justify-content: space-between;
+        gap: 12px;
+        font-size: 10px;
+        color: var(--muted);
+      }
+      .modal {
+        position: fixed;
+        inset: 0;
+        background: #0d202d88;
+        backdrop-filter: blur(3px);
+        z-index: 10;
+        display: none;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+      }
+      .modal.open {
+        display: flex;
+      }
+      .dialog {
+        background: var(--bg);
+        border-radius: 13px;
+        width: 850px;
+        max-height: 92vh;
+        overflow: auto;
+        box-shadow: 0 25px 100px #0003;
+      }
+      .dialog.narrow {
+        width: 510px;
+      }
+      .dialog-head {
+        padding: 23px 26px;
+        background: white;
+        border-bottom: 1px solid var(--line);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      .dialog-body {
+        padding: 24px 26px;
+      }
+      .detail-grid {
+        display: grid;
+        grid-template-columns: 1.2fr 1fr;
+        gap: 19px;
+      }
+      .block {
+        padding: 19px;
+        background: white;
+        border: 1px solid var(--line);
+        border-radius: 9px;
+        margin-bottom: 16px;
+      }
+      .kv {
+        display: flex;
+        justify-content: space-between;
+        gap: 12px;
+        font-size: 12px;
+        margin-top: 15px;
+      }
+      .recall-box {
+        border-left: 3px solid #df9b48;
+        padding: 13px 15px;
+        background: #fff6ea;
+        margin-top: 15px;
+        border-radius: 4px;
+      }
+      .recall-box p {
+        font-size: 12px;
+        line-height: 1.7;
+      }
+      .actions {
+        display: flex;
+        gap: 9px;
+        flex-wrap: wrap;
+        margin-top: 15px;
+      }
+      .field {
+        display: block;
+        font-size: 12px;
+        font-weight: 600;
+        margin: 17px 0 8px;
+      }
+      .timeline {
+        border-left: 1px solid #d6e1df;
+        margin: 16px 0 0 6px;
+        padding-left: 18px;
+      }
+      .event {
+        position: relative;
+        padding: 0 0 22px;
+        font-size: 12px;
+      }
+      .event:before {
+        content: "";
+        width: 7px;
+        height: 7px;
+        background: #779c90;
+        border: 3px solid #f4f7f7;
+        box-sizing: content-box;
+        border-radius: 50%;
+        position: absolute;
+        left: -25px;
+        top: 2px;
+      }
+      .event p {
+        font-size: 11px;
+        line-height: 1.6;
+        margin: 5px 0;
+        color: var(--muted);
+      }
+      .empty {
+        padding: 35px 20px;
+        text-align: center;
+        color: var(--muted);
+        font-size: 12px;
+      }
+      .toast {
+        position: fixed;
+        bottom: 25px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: var(--navy);
+        color: #fff;
+        max-width: 90%;
+        padding: 14px 21px;
+        border-radius: 9px;
+        z-index: 30;
+        box-shadow: 0 5px 30px #0003;
+        font-size: 12px;
+        display: none;
+      }
+      .toast.error {
+        background: #8c3d2f;
+      }
+      .toast.show {
+        display: block;
+      }
+      .title-actions {
+        display: flex;
+        gap: 8px;
+      }
+      .audit-list {
+        padding: 20px;
+      }
+      .recall-list {
+        padding: 20px;
+      }
+      .recall-entry {
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        padding: 19px;
+        margin-bottom: 13px;
+      }
+      .mobile-brand {
+        display: none;
+      }
+      @media (min-width: 1500px) {
+        .rt-content {
+          grid-template-columns: minmax(0, 1fr) 320px;
+        }
+      }
+      @media (max-width: 1200px) {
+        .app {
+          grid-template-columns: 190px 1fr;
+        }
+        .page {
+          padding: 25px 22px;
+        }
+        header {
+          padding: 0 22px;
+        }
+        .rt-content {
+          grid-template-columns: 1fr;
+        }
+        .rail {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 18px;
+        }
+        .rail-card {
+          margin-bottom: 0;
+        }
+        .stats {
+          gap: 10px;
+        }
+        .stat {
+          padding: 16px;
+        }
+        .scenario {
+          margin-bottom: 0;
+        }
+      }
+      @media (max-width: 760px) {
+        .app {
+          grid-template-columns: 1fr;
+        }
+        .rt-sidebar {
+          position: static;
+          height: auto;
+          padding: 16px;
+          display: block;
+        }
+        .brand {
+          font-size: 20px;
+        }
+        .side-label,
+        .sidebottom {
+          display: none;
+        }
+        .rt-sidebar nav {
+          display: flex;
+          margin-top: 16px;
+          gap: 5px;
+        }
+        .navbtn {
+          font-size: 11px;
+          padding: 9px;
+          margin: 0;
+        }
+        .navnum {
+          display: none;
+        }
+        header {
+          height: auto;
+          padding: 13px 16px;
+          flex-wrap: wrap;
+        }
+        .page {
+          padding: 23px 15px;
+        }
+        .heading {
+          align-items: flex-start;
+        }
+        .heading h1 {
+          font-size: 27px;
+        }
+        .stats {
+          grid-template-columns: 1fr 1fr;
+        }
+        .rail {
+          grid-template-columns: 1fr;
+        }
+        .notice {
+          display: block;
+        }
+        .notice .badge {
+          margin-top: 8px;
+        }
+        .detail-grid {
+          grid-template-columns: 1fr;
+        }
+        .dialog-body {
+          padding: 17px;
+        }
+        .dialog-head {
+          padding: 18px;
+        }
+        .toolbar {
+          padding: 12px;
+          flex-wrap: wrap;
+        }
+        .toolbar input {
+          width: 100%;
+        }
+        th,
+        td {
+          padding: 14px;
+        }
+        .bottom-banner {
+          flex-direction: column;
+        }
+        .title-actions {
+          flex-direction: column;
+        }
+        .session label {
+          display: none;
+        }
+      }
+      .rt-content > * {
+        min-width: 0;
+      }
+      .card-head {
+        flex-wrap: wrap;
+      }
+      @media (max-width: 1200px) {
+        .rt-content {
+          grid-template-columns: minmax(0, 1fr);
+        }
+      }
+      @media (max-width: 760px) {
+        .rail {
+          grid-template-columns: minmax(0, 1fr);
+        }
+        .app {
+          grid-template-columns: minmax(0, 1fr);
+        }
+      }
+      .detail-grid > * {
+        min-width: 0;
+      }
+      .dialog {
+        overflow-wrap: anywhere;
+      }
+      .kv {
+        flex-wrap: wrap;
+      }
+      .dialog-head > div {
+        min-width: 0;
+      }
+      .recall-box .actions .btn {
+        white-space: normal;
+      }
+      #onchainSummary[hidden] {
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="app">
+      <aside class="rt-sidebar">
+        <div class="brand">
+          <span class="mark">↗</span>RecallTag<small>·</small>
+        </div>
+        <div class="side-label">WORKSPACE</div>
+        <nav>
+          <button class="navbtn active" data-tab="registry">
+            <span>▦</span> Item registry <span class="navnum">06</span></button
+          ><button class="navbtn" data-tab="recalls">
+            <span>◈</span> Recall center
+            <span class="navnum" id="recallCount">0</span></button
+          ><button class="navbtn" data-tab="activity">
+            <span>◷</span> Activity log
+          </button>
+        </nav>
+        <div class="sidebottom">
+          <span class="live-dot"></span>Local interactive prototype<br />Fictional
+          products · No transactions<br /><span style="color: #78949e"
+            >Designed for NEAR testnet</span
+          >
+        </div>
+      </aside>
+      <main>
+        <header>
+          <div class="breadcrumb">
+            Workspace <span style="padding: 0 10px">/</span
+            ><strong id="crumb">Item registry</strong>
+          </div>
+          <div class="session">
+            <label for="actor">DEMO ACCOUNT</label
+            ><select id="actor">
+              <option value="volta.testnet">
+                Manufacturer · volta.testnet
+              </option>
+              <option value="alice.testnet">Holder · alice.testnet</option>
+              <option value="bob.testnet">Recipient · bob.testnet</option>
+              <option value="repair.testnet">
+                Service center · repair.testnet
+              </option>
+              <option value="maya.testnet">Holder · maya.testnet</option>
+              <option value="outsider.testnet">
+                Unauthorized · outsider.testnet
+              </option>
+            </select>
+          </div>
+        </header>
+        <div class="page">
+          <div class="heading">
+            <div>
+              <div class="eyebrow">Safety doesn't end at resale</div>
+              <h1 id="pageTitle">Every item. Every handover.</h1>
+              <div class="muted" id="pageSub">
+                Keep safety warnings attached to the things that change hands.
+              </div>
+            </div>
+            <div class="title-actions">
+              <button class="btn" id="reset">↺ Reset demo</button
+              ><button class="btn dark" id="issue">＋ Issue a recall</button>
+            </div>
+          </div>
+          <div class="notice">
+            <span style="font-size: 18px">◇</span>
+            <div>
+              <strong>Warnings travel. Responsibility stays visible.</strong
+              ><br />Acknowledging a recall does not resolve it. Only an
+              authorized service record marks remediation.
+            </div>
+            <span class="badge green">LOCAL SIMULATION</span>
+          </div>
+          <div class="stats" id="stats"></div>
+          <div class="rt-content">
+            <div id="mainContent"></div>
+            <aside class="rail">
+              <div class="scenario">
+                <div class="eyebrow">Try the complete story</div>
+                <h2>A new owner.<br />The same open recall.</h2>
+                <p>
+                  Recall a battery batch, transfer BAT-003 to Bob, then record
+                  its remediation. See what survives the handover.
+                </p>
+                <button class="btn" id="startStory">
+                  Start guided scenario →
+                </button>
+              </div>
+              <div class="card rail-card">
+                <h2>Three things to know</h2>
+                <div class="step">
+                  <span class="stepnum">1</span>
+                  <div>
+                    <strong>Recall by batch</strong><br /><span class="muted"
+                      >One notice covers every registered item in that
+                      batch.</span
+                    >
+                  </div>
+                </div>
+                <div class="step">
+                  <span class="stepnum">2</span>
+                  <div>
+                    <strong>Transfer with context</strong><br /><span
+                      class="muted"
+                      >Recipients inspect warnings before accepting the
+                      handover.</span
+                    >
+                  </div>
+                </div>
+                <div class="step">
+                  <span class="stepnum">3</span>
+                  <div>
+                    <strong>Record, don't assume</strong><br /><span
+                      class="muted"
+                      >Service records are attributed claims—not physical
+                      proof.</span
+                    >
+                  </div>
+                </div>
+                <div
+                  style="
+                    border-top: 1px solid var(--line);
+                    margin-top: 20px;
+                    padding-top: 6px;
+                  "
+                >
+                  <div class="legend">
+                    <span class="dot orange"></span>Unresolved recall
+                  </div>
+                  <div class="legend">
+                    <span class="dot green"></span>Remediation recorded
+                  </div>
+                  <div class="legend">
+                    <span class="dot"></span>No open recall recorded—not
+                    certified safe
+                  </div>
+                </div>
+              </div>
+            </aside>
+          </div>
+          <div class="bottom-banner">
+            <span
+              >Fictional VeloCell batteries · Local data stays in this browser ·
+              No wallet connected</span
+            ><span>NEAR Hackathon / Open Innovation ↗</span>
+          </div>
+        </div>
+      </main>
+    </div>
+    <div
+      class="modal"
+      id="modal"
+      role="dialog"
+      aria-modal="true"
+      aria-label="RecallTag action"
+    >
+      <div class="dialog" id="dialog"></div>
+    </div>
+    <div class="toast" id="toast" role="status"></div>
+    <script type="module" src="/app.mjs"></script>
+    <script type="module" src="/enhancements.mjs"></script>
+    <script type="module" src="/wallet.mjs"></script>
+  </body>
+</html>

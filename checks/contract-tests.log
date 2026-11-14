@@ -1,0 +1,24 @@
+   Compiling recalltag v0.1.0 (/home/user/recalltag/contract)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 1.57s
+     Running unittests src/lib.rs (contract/target/debug/build/recalltag/6f7513923b35b504/out/recalltag-6f7513923b35b504)
+
+running 10 tests
+test tests::duplicate_batch - should panic ... ok
+test tests::duplicate_repair - should panic ... ok
+test tests::owner_cannot_repair - should panic ... ok
+test tests::full_flow ... ok
+test tests::pagination_and_cancel ... ok
+test tests::returning_holder_new_epoch ... ok
+test tests::stale_acceptance_rejected - should panic ... ok
+test tests::storage_payment_required - should panic ... ok
+test tests::unauthorized_recall - should panic ... ok
+test tests::wrong_recipient - should panic ... ok
+
+test result: ok. 10 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.35s
+
+   Doc-tests recalltag
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+

@@ -1,0 +1,5 @@
+
+> recalltag@0.1.0 test:enhancements
+> node checks/enhancements.mjs
+
+PASS: QR rendered, local evidence SHA-256 verified, unsigned disclaimer present, 3 isolated safety checks pass without modifying saved state, wallet selection modal opens. No wallet login or signing performed.

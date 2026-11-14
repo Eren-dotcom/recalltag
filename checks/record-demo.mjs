@@ -1,0 +1,14 @@
+import { chromium } from '@playwright/test';
+import fs from 'node:fs';
+const browser=await chromium.launch({headless:true,args:['--no-sandbox']});
+const context=await browser.newContext({viewport:{width:1440,height:1000},recordVideo:{dir:'checks/recordings',size:{width:1440,height:1000}}});
+const p=await context.newPage();p.on('dialog',d=>d.accept());
+const pause=()=>p.waitForTimeout(1000);
+await p.goto('http://localhost:3002');await p.waitForSelector('#nearPanel');await pause();
+await p.click('#issue');await pause();await p.click('button[type=submit]');await pause();
+await p.selectOption('#actor','alice.testnet');await p.locator('[data-item="BAT-003"]').click();await pause();await p.click('[data-ack="RC-001"]');await pause();await p.fill('#recipient','bob.testnet');await p.click('#proposeTransfer');await pause();await p.keyboard.press('Escape');
+await p.selectOption('#actor','bob.testnet');await p.locator('[data-item="BAT-003"]').click();await pause();await p.click('#acceptTransfer');await pause();await p.click('[data-repair="RC-001"]');await p.click('button[type=submit]');await pause();await p.keyboard.press('Escape');
+await p.selectOption('#actor','repair.testnet');await p.locator('[data-item="BAT-003"]').click();await p.click('[data-repair="RC-001"]');await pause();await p.click('button[type=submit]');await pause();await p.keyboard.press('Escape');
+await p.click('#runSafetyLab');await p.waitForSelector('#closeSafetyLab');await pause();await pause();await p.click('#closeSafetyLab');
+await p.click('[data-tab="activity"]');await pause();
+const video=p.video();await context.close();await video.saveAs('/home/user/RecallTag-mock-run.webm');await browser.close();console.log('Saved RecallTag-mock-run.webm. This recording shows the LOCAL SIMULATOR, not public-chain transactions.');

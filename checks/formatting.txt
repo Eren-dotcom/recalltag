@@ -1,0 +1,11 @@
+app.mjs 225ms
+model.mjs 100ms
+wallet.mjs 31ms
+enhancements.mjs 48ms
+index.html 285ms
+vite.config.js 6ms
+tests/model.test.mjs 64ms
+checks/browser.mjs 16ms
+checks/enhancements.mjs 9ms
+checks/extended.mjs 23ms
+checks/sandbox.mjs 22ms

@@ -1,0 +1,113 @@
+
+> recalltag@0.1.0 check
+> node --check model.mjs && node --check app.mjs && npm test
+
+
+> recalltag@0.1.0 test
+> node --test tests/*.test.mjs
+
+TAP version 13
+# Subtest: seed: six items, two batches, no safety certification inferred
+ok 1 - seed: six items, two batches, no safety certification inferred
+  ---
+  duration_ms: 2.583921
+  ...
+# Subtest: only authorized manufacturer issues recalls
+ok 2 - only authorized manufacturer issues recalls
+  ---
+  duration_ms: 0.96712
+  ...
+# Subtest: batch recall affects only matching items
+ok 3 - batch recall affects only matching items
+  ---
+  duration_ms: 1.100237
+  ...
+# Subtest: acknowledgement does not resolve a recall
+ok 4 - acknowledgement does not resolve a recall
+  ---
+  duration_ms: 0.342704
+  ...
+# Subtest: only holder can acknowledge
+ok 5 - only holder can acknowledge
+  ---
+  duration_ms: 0.267303
+  ...
+# Subtest: transfer requires nominated recipient and retains unresolved warning
+ok 6 - transfer requires nominated recipient and retains unresolved warning
+  ---
+  duration_ms: 0.391738
+  ...
+# Subtest: only service center can record remediation
+ok 7 - only service center can record remediation
+  ---
+  duration_ms: 0.261822
+  ...
+# Subtest: remediation applies only to selected item and recall
+ok 8 - remediation applies only to selected item and recall
+  ---
+  duration_ms: 0.3758
+  ...
+# Subtest: prior holder cannot act after accepted transfer
+ok 9 - prior holder cannot act after accepted transfer
+  ---
+  duration_ms: 0.506836
+  ...
+# Subtest: cancel transfer and reject duplicate or self proposals
+ok 10 - cancel transfer and reject duplicate or self proposals
+  ---
+  duration_ms: 0.370478
+  ...
+# Subtest: rejected actions do not mutate original state
+ok 11 - rejected actions do not mutate original state
+  ---
+  duration_ms: 0.208251
+  ...
+# Subtest: returning holder must acknowledge again for a new custody period
+ok 12 - returning holder must acknowledge again for a new custody period
+  ---
+  duration_ms: 1.484874
+  ...
+# Subtest: duplicate acknowledgements and repairs are rejected
+ok 13 - duplicate acknowledgements and repairs are rejected
+  ---
+  duration_ms: 0.388346
+  ...
+# Subtest: new recall during a pending handover follows acceptance
+ok 14 - new recall during a pending handover follows acceptance
+  ---
+  duration_ms: 0.320598
+  ...
+# Subtest: malformed text and invalid recipient inputs fail cleanly
+ok 15 - malformed text and invalid recipient inputs fail cleanly
+  ---
+  duration_ms: 0.309259
+  ...
+# Subtest: valid transitions preserve recoverable state
+ok 16 - valid transitions preserve recoverable state
+  ---
+  duration_ms: 1.126758
+  ...
+# Subtest: corrupt and older saved data reset safely
+ok 17 - corrupt and older saved data reset safely
+  ---
+  duration_ms: 0.709869
+  ...
+# Subtest: acceptance rejects a recall issued after the recipient preview
+ok 18 - acceptance rejects a recall issued after the recipient preview
+  ---
+  duration_ms: 0.457561
+  ...
+# Subtest: acceptance rejects remediation recorded after the recipient preview
+ok 19 - acceptance rejects remediation recorded after the recipient preview
+  ---
+  duration_ms: 0.451248
+  ...
+1..19
+# tests 19
+# suites 0
+# pass 19
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 115.205155

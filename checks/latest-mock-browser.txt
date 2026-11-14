@@ -1,0 +1,17 @@
+
+> recalltag@0.1.0 test:browser
+> node checks/browser.mjs && node checks/extended.mjs
+
+PASS: full handover + unauthorized repair + authorized repair + persistence + mobile overflow + no page errors
+PASS: Search and empty-state rendering
+PASS: Holder filter
+PASS: Unauthorized recall rejected in browser
+PASS: Recall text HTML escaped
+PASS: Recall center and activity navigation
+PASS: Custom recipient selectable and able to accept
+PASS: Direct item link
+PASS: Page and detail dialog fit 360/390/768/1440px
+PASS: Malformed saved data recovery
+PASS: Invalid JSON recovery
+PASS: App loads when localStorage is blocked
+PASS: No uncaught browser errors

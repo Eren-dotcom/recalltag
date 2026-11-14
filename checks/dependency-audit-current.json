@@ -1,0 +1,390 @@
+{
+  "auditReportVersion": 2,
+  "vulnerabilities": {
+    "@near-js/accounts": {
+      "name": "@near-js/accounts",
+      "severity": "low",
+      "isDirect": false,
+      "via": [
+        "@near-js/crypto",
+        "@near-js/keystores",
+        "@near-js/providers",
+        "@near-js/providers",
+        "@near-js/signers",
+        "@near-js/transactions"
+      ],
+      "effects": [],
+      "range": ">=1.2.2",
+      "nodes": [
+        "node_modules/@near-js/accounts",
+        "node_modules/@near-js/wallet-account/node_modules/@near-js/accounts",
+        "node_modules/near-api-js/node_modules/@near-js/accounts"
+      ],
+      "fixAvailable": true
+    },
+    "@near-js/crypto": {
+      "name": "@near-js/crypto",
+      "severity": "low",
+      "isDirect": false,
+      "via": [
+        "secp256k1"
+      ],
+      "effects": [
+        "@near-js/accounts",
+        "@near-js/keystores",
+        "@near-js/keystores-browser",
+        "@near-js/keystores-node",
+        "@near-js/providers",
+        "@near-js/signers",
+        "@near-js/transactions",
+        "@near-js/wallet-account",
+        "@near-wallet-selector/core",
+        "@near-wallet-selector/my-near-wallet",
+        "near-api-js"
+      ],
+      "range": ">=1.3.0-next.0",
+      "nodes": [
+        "node_modules/@near-js/crypto",
+        "node_modules/@near-js/keystores-browser/node_modules/@near-js/crypto",
+        "node_modules/@near-js/keystores-node/node_modules/@near-js/crypto",
+        "node_modules/@near-js/wallet-account/node_modules/@near-js/crypto",
+        "node_modules/near-api-js/node_modules/@near-js/crypto"
+      ],
+      "fixAvailable": {
+        "name": "@near-wallet-selector/core",
+        "version": "9.5.4",
+        "isSemVerMajor": true
+      }
+    },
+    "@near-js/keystores": {
+      "name": "@near-js/keystores",
+      "severity": "low",
+      "isDirect": false,
+      "via": [
+        "@near-js/crypto"
+      ],
+      "effects": [
+        "@near-js/accounts"
+      ],
+      "range": ">=0.1.0-next.0",
+      "nodes": [
+        "node_modules/@near-js/keystores",
+        "node_modules/@near-js/keystores-browser/node_modules/@near-js/keystores",
+        "node_modules/@near-js/keystores-node/node_modules/@near-js/keystores",
+        "node_modules/@near-js/wallet-account/node_modules/@near-js/keystores",
+        "node_modules/near-api-js/node_modules/@near-js/keystores"
+      ],
+      "fixAvailable": true
+    },
+    "@near-js/keystores-browser": {
+      "name": "@near-js/keystores-browser",
+      "severity": "low",
+      "isDirect": false,
+      "via": [
+        "@near-js/crypto",
+        "@near-js/keystores"
+      ],
+      "effects": [],
+      "range": ">=0.1.0-next.0",
+      "nodes": [
+        "node_modules/@near-js/keystores-browser"
+      ],
+      "fixAvailable": true
+    },
+    "@near-js/keystores-node": {
+      "name": "@near-js/keystores-node",
+      "severity": "low",
+      "isDirect": false,
+      "via": [
+        "@near-js/crypto",
+        "@near-js/keystores"
+      ],
+      "effects": [],
+      "range": ">=0.0.13",
+      "nodes": [
+        "node_modules/@near-js/keystores-node"
+      ],
+      "fixAvailable": true
+    },
+    "@near-js/providers": {
+      "name": "@near-js/providers",
+      "severity": "low",
+      "isDirect": false,
+      "via": [
+        "@near-js/crypto",
+        "@near-js/transactions"
+      ],
+      "effects": [
+        "@near-js/accounts",
+        "@near-wallet-selector/core"
+      ],
+      "range": ">=0.2.3",
+      "nodes": [
+        "node_modules/@near-js/providers",
+        "node_modules/@near-js/wallet-account/node_modules/@near-js/providers",
+        "node_modules/near-api-js/node_modules/@near-js/providers"
+      ],
+      "fixAvailable": {
+        "name": "@near-wallet-selector/core",
+        "version": "9.5.4",
+        "isSemVerMajor": true
+      }
+    },
+    "@near-js/signers": {
+      "name": "@near-js/signers",
+      "severity": "low",
+      "isDirect": false,
+      "via": [
+        "@near-js/crypto",
+        "@near-js/keystores",
+        "@near-js/transactions"
+      ],
+      "effects": [
+        "@near-js/transactions",
+        "@near-wallet-selector/core"
+      ],
+      "range": ">=0.1.5",
+      "nodes": [
+        "node_modules/@near-js/signers",
+        "node_modules/@near-js/wallet-account/node_modules/@near-js/signers",
+        "node_modules/near-api-js/node_modules/@near-js/signers"
+      ],
+      "fixAvailable": {
+        "name": "@near-wallet-selector/core",
+        "version": "9.5.4",
+        "isSemVerMajor": true
+      }
+    },
+    "@near-js/transactions": {
+      "name": "@near-js/transactions",
+      "severity": "low",
+      "isDirect": false,
+      "via": [
+        "@near-js/crypto",
+        "@near-js/signers"
+      ],
+      "effects": [
+        "@near-js/providers",
+        "@near-js/signers"
+      ],
+      "range": ">=1.2.3",
+      "nodes": [
+        "node_modules/@near-js/transactions",
+        "node_modules/@near-js/wallet-account/node_modules/@near-js/transactions",
+        "node_modules/near-api-js/node_modules/@near-js/transactions"
+      ],
+      "fixAvailable": {
+        "name": "@near-wallet-selector/core",
+        "version": "9.5.4",
+        "isSemVerMajor": true
+      }
+    },
+    "@near-js/wallet-account": {
+      "name": "@near-js/wallet-account",
+      "severity": "low",
+      "isDirect": false,
+      "via": [
+        "@near-js/accounts",
+        "@near-js/crypto",
+        "@near-js/keystores",
+        "@near-js/providers",
+        "@near-js/signers",
+        "@near-js/transactions"
+      ],
+      "effects": [
+        "near-api-js"
+      ],
+      "range": ">=1.2.3",
+      "nodes": [
+        "node_modules/@near-js/wallet-account"
+      ],
+      "fixAvailable": {
+        "name": "near-workspaces",
+        "version": "4.0.0",
+        "isSemVerMajor": true
+      }
+    },
+    "@near-wallet-selector/core": {
+      "name": "@near-wallet-selector/core",
+      "severity": "low",
+      "isDirect": true,
+      "via": [
+        "@near-js/crypto",
+        "@near-js/providers",
+        "@near-js/signers",
+        "@near-js/transactions"
+      ],
+      "effects": [
+        "@near-wallet-selector/modal-ui"
+      ],
+      "range": "8.9.13 - 8.9.14 || >=9.1.0",
+      "nodes": [
+        "node_modules/@near-wallet-selector/core"
+      ],
+      "fixAvailable": {
+        "name": "@near-wallet-selector/core",
+        "version": "9.5.4",
+        "isSemVerMajor": true
+      }
+    },
+    "@near-wallet-selector/modal-ui": {
+      "name": "@near-wallet-selector/modal-ui",
+      "severity": "low",
+      "isDirect": true,
+      "via": [
+        "@near-wallet-selector/core"
+      ],
+      "effects": [],
+      "range": ">=10.0.0-beta.0",
+      "nodes": [
+        "node_modules/@near-wallet-selector/modal-ui"
+      ],
+      "fixAvailable": {
+        "name": "@near-wallet-selector/modal-ui",
+        "version": "9.5.4",
+        "isSemVerMajor": true
+      }
+    },
+    "@near-wallet-selector/my-near-wallet": {
+      "name": "@near-wallet-selector/my-near-wallet",
+      "severity": "low",
+      "isDirect": true,
+      "via": [
+        "@near-js/accounts",
+        "@near-js/crypto",
+        "@near-js/providers",
+        "@near-js/transactions",
+        "@near-wallet-selector/core"
+      ],
+      "effects": [],
+      "range": ">=10.0.0-beta.0",
+      "nodes": [
+        "node_modules/@near-wallet-selector/my-near-wallet"
+      ],
+      "fixAvailable": {
+        "name": "@near-wallet-selector/my-near-wallet",
+        "version": "9.5.4",
+        "isSemVerMajor": true
+      }
+    },
+    "elliptic": {
+      "name": "elliptic",
+      "severity": "low",
+      "isDirect": false,
+      "via": [
+        {
+          "source": 1112030,
+          "name": "elliptic",
+          "dependency": "elliptic",
+          "title": "Elliptic Uses a Cryptographic Primitive with a Risky Implementation",
+          "url": "https://github.com/advisories/GHSA-848j-6mx2-7j84",
+          "severity": "low",
+          "cwe": [
+            "CWE-1240"
+          ],
+          "cvss": {
+            "score": 5.6,
+            "vectorString": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:L/I:L/A:L"
+          },
+          "range": "<=6.6.1"
+        }
+      ],
+      "effects": [
+        "secp256k1"
+      ],
+      "range": "*",
+      "nodes": [
+        "node_modules/elliptic"
+      ],
+      "fixAvailable": {
+        "name": "@near-wallet-selector/core",
+        "version": "9.5.4",
+        "isSemVerMajor": true
+      }
+    },
+    "near-api-js": {
+      "name": "near-api-js",
+      "severity": "low",
+      "isDirect": false,
+      "via": [
+        "@near-js/accounts",
+        "@near-js/crypto",
+        "@near-js/keystores",
+        "@near-js/keystores-browser",
+        "@near-js/keystores-node",
+        "@near-js/providers",
+        "@near-js/signers",
+        "@near-js/transactions",
+        "@near-js/wallet-account"
+      ],
+      "effects": [
+        "near-workspaces"
+      ],
+      "range": "4.0.4 - 6.5.1",
+      "nodes": [
+        "node_modules/near-api-js"
+      ],
+      "fixAvailable": {
+        "name": "near-workspaces",
+        "version": "4.0.0",
+        "isSemVerMajor": true
+      }
+    },
+    "near-workspaces": {
+      "name": "near-workspaces",
+      "severity": "low",
+      "isDirect": true,
+      "via": [
+        "near-api-js"
+      ],
+      "effects": [],
+      "range": ">=5.0.0",
+      "nodes": [
+        "node_modules/near-workspaces"
+      ],
+      "fixAvailable": {
+        "name": "near-workspaces",
+        "version": "4.0.0",
+        "isSemVerMajor": true
+      }
+    },
+    "secp256k1": {
+      "name": "secp256k1",
+      "severity": "low",
+      "isDirect": false,
+      "via": [
+        "elliptic"
+      ],
+      "effects": [
+        "@near-js/crypto"
+      ],
+      "range": ">=2.0.0",
+      "nodes": [
+        "node_modules/secp256k1"
+      ],
+      "fixAvailable": {
+        "name": "@near-wallet-selector/core",
+        "version": "9.5.4",
+        "isSemVerMajor": true
+      }
+    }
+  },
+  "metadata": {
+    "vulnerabilities": {
+      "info": 0,
+      "low": 16,
+      "moderate": 0,
+      "high": 0,
+      "critical": 0,
+      "total": 16
+    },
+    "dependencies": {
+      "prod": 107,
+      "dev": 99,
+      "optional": 53,
+      "peer": 0,
+      "peerOptional": 0,
+      "total": 258
+    }
+  }
+}

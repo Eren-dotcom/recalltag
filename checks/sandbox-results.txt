@@ -1,0 +1,42 @@
+Receipts: Fv2tKdQULAHWc6XoeF39AkJMusJ6G92bttajtmBtqJzV, Ahga8q9bkiK9ie1tcbWEFbGpQtNNrao3K8J7dJDZDC4B
+	Log [registry.test.near]: EVENT_JSON:{"data":[{"actor":"issuer.test.near","batch":"B1"}],"event":"batch_created","standard":"recalltag","version":"1.0.0"}
+Contract logs from registry.test.near.create_batch({"id":"B1","model":"Fictional battery","service":"repair.test.near"}) call: [
+  'EVENT_JSON:{"data":[{"actor":"issuer.test.near","batch":"B1"}],"event":"batch_created","standard":"recalltag","version":"1.0.0"}'
+]
+Receipts: HXVTHF918X6VY6qfJJUwC9DSRXhxLJjMnjzEacTauuMz, HKckDmsyQHe6z5QYg7U2bHwX8iqLpiBYg4tGDKesiriW
+	Log [registry.test.near]: EVENT_JSON:{"data":[{"batch":"B1","item":"I1"}],"event":"item_registered","standard":"recalltag","version":"1.0.0"}
+Contract logs from registry.test.near.register_item({"id":"I1","batch":"B1"}) call: [
+  'EVENT_JSON:{"data":[{"batch":"B1","item":"I1"}],"event":"item_registered","standard":"recalltag","version":"1.0.0"}'
+]
+Receipts: FUSpqAKuMpF6QSDDzeSiCGZ7EDW2UuTraUvTZYPLek4e, CmTh7Te7WCPc5NhBL2bRKbBp7SVXcyidEbGY9Czdbriw
+	Failure [registry.test.near]: Error: {"index":0,"kind":{"index":0,"kind":{"FunctionCallError":{"ExecutionError":"Smart contract panicked: panicked at src/lib.rs:190:9:\nassertion `left == right` failed: Issuer only\n  left: AccountId(\"outsider.test.near\")\n right: AccountId(\"issuer.test.near\")"}}}}
+Receipts: Gt2aUEXM1GWTaY1FfNFykCRkp6iSr5jeFymK2Z3Z7vb4, 3qUwnKzbY51Scrhtr4BBRUyN2D4c8h9dRmCiDnmSwrmg
+	Log [registry.test.near]: EVENT_JSON:{"data":[{"item":"I1","to":"bob.test.near"}],"event":"handover_proposed","standard":"recalltag","version":"1.0.0"}
+Contract logs from registry.test.near.propose_transfer({"item_id":"I1","to":"bob.test.near"}) call: [
+  'EVENT_JSON:{"data":[{"item":"I1","to":"bob.test.near"}],"event":"handover_proposed","standard":"recalltag","version":"1.0.0"}'
+]
+Receipts: 6AFYGFGvZ3RZ9v9ghNqYDYYYnyWDd9jmnMXG1SrN7PWb, GbERsMdUsZZngDqxij7djqzPx24bXmZ4E4EZm4hQCEYH
+	Log [registry.test.near]: EVENT_JSON:{"data":[{"batch":"B1","recall":"R1","revision":1}],"event":"recall_issued","standard":"recalltag","version":"1.0.0"}
+Contract logs from registry.test.near.issue_recall({"id":"R1","batch":"B1","reason":"Stop use and arrange authorized service."}) call: [
+  'EVENT_JSON:{"data":[{"batch":"B1","recall":"R1","revision":1}],"event":"recall_issued","standard":"recalltag","version":"1.0.0"}'
+]
+Receipts: F2SxMeiP7W9bnWozUCdumtSnbQNcAAWxT4c77ZG5umY3, D1KYUYrxHu6ej5SDk53LLJGWQNXkiVXmWRZd6Egd9B6R
+	Failure [registry.test.near]: Error: {"index":0,"kind":{"index":0,"kind":{"FunctionCallError":{"ExecutionError":"Smart contract panicked: panicked at src/lib.rs:265:9:\nassertion `left == right` failed: Safety state changed: review latest recall notices\n  left: 1\n right: 0"}}}}
+Receipts: 3MLNhySsvE3DCYQCge2ZfvrNY48PPK3WVvdwn4fJumGM, 97NrE5GasCdE7gcNU1TmqgPvv5G9GxLvxstCKZsc82Gk
+	Log [registry.test.near]: EVENT_JSON:{"data":[{"epoch":1,"holder":"bob.test.near","item":"I1","reviewed_revision":1}],"event":"handover_accepted","standard":"recalltag","version":"1.0.0"}
+Contract logs from registry.test.near.accept_transfer({"item_id":"I1","expected_revision":1,"expected_repair_count":0}) call: [
+  'EVENT_JSON:{"data":[{"epoch":1,"holder":"bob.test.near","item":"I1","reviewed_revision":1}],"event":"handover_accepted","standard":"recalltag","version":"1.0.0"}'
+]
+Receipts: D6beEsef3EKaNVYqbLUakJX6e1Qg9BijCv4gtSMsSqfi, CzVAC6eoZuzy5P1qXCRmLBY3hc5985YGn1BnR8noYZP1
+	Log [registry.test.near]: EVENT_JSON:{"data":[{"actor":"bob.test.near","epoch":1,"item":"I1","recall":"R1"}],"event":"acknowledged","standard":"recalltag","version":"1.0.0"}
+Contract logs from registry.test.near.acknowledge({"item_id":"I1","recall_id":"R1"}) call: [
+  'EVENT_JSON:{"data":[{"actor":"bob.test.near","epoch":1,"item":"I1","recall":"R1"}],"event":"acknowledged","standard":"recalltag","version":"1.0.0"}'
+]
+Receipts: ApzCtFSbMVgexzHsL8FxENAD9GjeEWs5s8GT2YUktwvZ, 2nd1htv9UM7FjQ2ewZK6NqQYWip71u4mTqTLKgBRmLEy
+	Failure [registry.test.near]: Error: {"index":0,"kind":{"index":0,"kind":{"FunctionCallError":{"ExecutionError":"Smart contract panicked: panicked at src/lib.rs:304:9:\nassertion `left == right` failed: Service center only\n  left: AccountId(\"bob.test.near\")\n right: AccountId(\"repair.test.near\")"}}}}
+Receipts: 4rUDnpviJE7QevnoCop6QyhLih68o7VeyDdXZcvw2wT1, PRUTHcvnUuCZpNDytjZNMPwnNgTghbiumDSuLJ6Coxn
+	Log [registry.test.near]: EVENT_JSON:{"data":[{"actor":"repair.test.near","item":"I1","recall":"R1"}],"event":"remediation_recorded","standard":"recalltag","version":"1.0.0"}
+Contract logs from registry.test.near.record_remediation({"item_id":"I1","recall_id":"R1","note":"Replaced affected module; service claim only."}) call: [
+  'EVENT_JSON:{"data":[{"actor":"repair.test.near","item":"I1","recall":"R1"}],"event":"remediation_recorded","standard":"recalltag","version":"1.0.0"}'
+]
+SANDBOX PASS: deploy/init, paid storage, registration, unauthorized issuer rejection, stale review rejection, transfer acceptance, acknowledgement, unauthorized repair rejection, remediation and persisted views.
