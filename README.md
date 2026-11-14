@@ -121,3 +121,7 @@ Adding NEAR tooling introduced low-severity upstream dependency advisories. A ta
 The physical-to-digital link is not solved by a QR. A copied tag can mislead users. Issuers can omit or misstate recalls. Service accounts can falsely claim repairs. Public account IDs reveal registered-custody relationships. Never store contact details or sensitive evidence onchain. Contract-account full-access keys may permit upgrades; this is not an absolute immutability guarantee. Authority revocation, recall closure/corrections, possession disputes, recovery, anti-counterfeit hardware and notifications are not implemented.
 
 **This is an unaudited test prototype. Do not use it for real-world safety decisions.** License selection and public repository publication remain decisions for the project owner.
+
+## Hackathon disclosure
+
+Two-project disclosure (organizers' Q-015): this is one of two independent projects submitted by the same person to NEAR HACKATHON. The other is NEAR Intents X-Ray (https://github.com/Eren-dotcom/near-intents-xray), an evidence-first investment thesis on NEAR Intents (Investment Thesis track). The two projects are independent and share no code.
