@@ -30,7 +30,8 @@ Built at NEAR HACKATHON: RecallTag.
 
 A safety warning shouldn't disappear when an item changes hands. Our NEAR contract rejects a handover if a new recall arrived after the recipient reviewed it. Acknowledgement is not repair; service records remain attributed claims.
 
-Demo and public code: add your actual links before posting.
+Demo: https://eren-dotcom.github.io/recalltag/
+Code: https://github.com/Eren-dotcom/recalltag
 
 @NEARProtocol #NEARHackathon
 

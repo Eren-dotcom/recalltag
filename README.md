@@ -4,6 +4,9 @@
 
 A NEAR Open Innovation prototype for batch recalls, registered custody handovers, holder acknowledgements and attributed service records. Products are fictional. This is not regulatory clearance, product authentication, legal ownership evidence or proof of physical repair.
 
+**Live demo:** https://eren-dotcom.github.io/recalltag/ — the browser-local simulator, hosted as-is. No wallet or contract is configured in this hosted build, exactly as the status table below describes.
+**Repository:** https://github.com/Eren-dotcom/recalltag
+
 ## What works today
 
 | Component | Status |
